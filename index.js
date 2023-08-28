@@ -15,7 +15,7 @@ let tomorowFormat = tomorrow.toISOString().split('T')[0];
 end_date.value = tomorowFormat;
 end_date.min = tomorowFormat;
 
-
+// cet évènement permet de vérifier que la date de fin est supérieure à la date de début
 start_date.addEventListener('change',  (e)=> {
     let day = new Date(e.target.value);
     if (end_date.value < start_date.value){
@@ -23,6 +23,15 @@ start_date.addEventListener('change',  (e)=> {
         day.setDate(day.getDate() + 1);
       
         end_date.value = day.toISOString().split('T')[0];
+
+    }
+});
+
+end_date.addEventListener('change',  (e)=> {
+    let day = new Date(e.target.value);
+    if (end_date.value < start_date.value){
+        day.setDate(day.getDate() - 1);
+        start_date.value = day.toISOString().split('T')[0];
 
     }
 });
